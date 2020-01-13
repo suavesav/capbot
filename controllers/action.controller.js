@@ -9,13 +9,21 @@ exports.action_create = function (req, res) {
     let action = new Action(
         {
             name: req.body.name,
-            description: req.body.description
+            description: req.body.description,
         }
     );
 
     action.save(function (err) {
         if (err) { return next(err); }
         res.send('Action Created')
+    })
+};
+
+exports.action_list = function (req, res) {
+    console.log(req.query);
+    Action.find(req.query, function(err, actions) {
+        if (err) { return next(err); }
+        res.send(actions);
     })
 };
 
