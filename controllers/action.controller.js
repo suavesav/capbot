@@ -20,7 +20,6 @@ exports.action_create = function (req, res) {
 };
 
 exports.action_list = function (req, res) {
-    console.log(req.query);
     Action.find(req.query, function(err, actions) {
         if (err) { return next(err); }
         res.send(actions);
